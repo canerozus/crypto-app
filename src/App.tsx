@@ -1,16 +1,16 @@
 import { Layout } from "antd";
 import Navbar from "./components/Navbar";
-import  HomePage  from "./pages/HomePage";
-import Exchanges  from "./pages/Exchanges";
-import  CryptoCurrencies  from "./pages/CryptoCurrencies";
-import  CryptoDetails  from "./pages/CryptoDetails";
-import News  from "./pages/News";
-import { Route, Router, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Exchanges from "./pages/Exchanges";
+import CryptoCurrencies from "./pages/CryptoCurrencies";
+import CryptoDetails from "./pages/CryptoDetails";
+import News from "./pages/News";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="app">
-      <div className="navbar">
+      <div className="navbar" >
         <Navbar />
       </div>
       <div className="main">
@@ -26,7 +26,7 @@ function App() {
           </div>
         </Layout>
       </div>
-      <div className="footer"></div>
+      <div className="footer" ></div>
     </div>
   );
 }
