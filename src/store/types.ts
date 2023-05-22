@@ -1,3 +1,3 @@
 export interface GetCryptocurrencies {
-    data: Array<[]>
+  data: Array<[]>;
 }

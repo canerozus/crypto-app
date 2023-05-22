@@ -1,8 +1,11 @@
 import React from "react";
 import millify from "millify";
 import { Typography, Row, Col, Statistic } from "antd";
+import { useGetCryptoByNameQuery } from "../store/cryptoApi";
 
 const HomePage = () => {
+  const { data } = useGetCryptoByNameQuery();
+  console.log(data);
   return (
     <>
       <Typography.Title level={2} className="heading">
