@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Menu, Typography, Avatar } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   HomeOutlined,
   MoneyCollectOutlined,
@@ -9,9 +9,9 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 
-
 const Navbar = () => {
-    
+  const [activeTab, setActiveTab] = useState("");
+  const location = useLocation();
   return (
     <div className="nav-container">
       <div>
@@ -19,7 +19,7 @@ const Navbar = () => {
           <Link to="/">CryptoApp</Link>
         </Typography.Title>
       </div>
-      <Menu theme="dark">
+      <Menu  theme="dark">
         <Menu.Item icon={<HomeOutlined />}>
           <Link to="/">Home</Link>
         </Menu.Item>
