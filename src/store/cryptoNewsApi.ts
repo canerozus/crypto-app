@@ -13,10 +13,10 @@ export const NewsApi = createApi({
   reducerPath: "newsApi",
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
   endpoints: (builder) => ({
-    getNews: builder.query<GetNews, { newsCategory: string; count: number }>({
-      query: ({ newsCategory, count }) =>
+    getNews: builder.query<GetNews, [count: number]>({
+      query: (count) =>
         createRequest(
-          `/news/search?q=${newsCategory}&safeSearch=Off&textFormat=Raw&freshness=Day&count=${count}`
+          `/news/search?q=Cryptocurrency&safeSearch=Off&textFormat=Raw&freshness=Day&count=${count}`
         ),
     }),
   }),
