@@ -3,11 +3,12 @@ import millify from "millify";
 import { Typography, Row, Col, Statistic } from "antd";
 import { useGetCryptoByNameQuery } from "../store/cryptoApi";
 import { Link } from "react-router-dom";
+import CryptoCurrencies from "./CryptoCurrencies";
+import News from "./News";
 
 const HomePage = () => {
   const { data, isFetching } = useGetCryptoByNameQuery();
   const res = data?.data;
-  console.log(res);
 
   return (
     <>
@@ -58,6 +59,16 @@ const HomePage = () => {
           <Link to="/cryptocurrencies">Show More</Link>
         </Typography.Title>
       </div>
+      <CryptoCurrencies simplified/>
+      <div className="home-heading-container">
+        <Typography.Title level={2} className="home-title">
+         Latest Crypto News
+        </Typography.Title>
+        <Typography.Title level={3} className="show-more">
+          <Link to="/cryptocurrencies">Show More</Link>
+        </Typography.Title>
+      </div>
+      <News simplified/>
     </>
   );
 };

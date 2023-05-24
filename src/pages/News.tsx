@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-const News = () => {
+const News = ({simplified: unknown}) => {
   return (
     <div>News</div>
   )

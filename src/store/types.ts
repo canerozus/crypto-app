@@ -10,6 +10,10 @@ interface Stats {
   total24hVolume: number;
 }
 interface Coin {
+  change:number;
+  marketCap: number;
+  iconUrl: string;
+  rank: number;
   uuid: string;
   name: string;
   price: number;
