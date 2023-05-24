@@ -11,8 +11,8 @@ export const CryptoApi = createApi({
   reducerPath: "cryptoApi",
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
   endpoints: (builder) => ({
-    getCryptoByName: builder.query<GetCryptocurrencies, void>({
-      query: () => createRequest(`/coins`),
+    getCryptoByName: builder.query<GetCryptocurrencies, [count:number]>({
+      query: (count) => createRequest(`/coins?limit=${count}`),
     }),
   }),
 });

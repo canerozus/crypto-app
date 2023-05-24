@@ -18,3 +18,24 @@ interface Coin {
   name: string;
   price: number;
 }
+
+export interface GetNews { 
+  _type: string;
+  webSearchUrl: string;
+  value: value[]
+}
+interface value {
+  _type: string;
+  name: string;
+  url: string;
+  description: string;
+  datePublished: string;
+  image: image[]
+}
+interface image {
+  _type: string;
+  thumbnail: thumbnail[]
+}
+interface thumbnail {
+  contentUrl: string;
+}

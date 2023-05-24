@@ -3,12 +3,16 @@ import React, { useState, useEffect } from "react";
 import { useGetCryptoByNameQuery } from "../store/cryptoApi";
 import { Link } from "react-router-dom";
 import millify from "millify";
-
-const CryptoCurrencies = () => {
-  const { data, isFetching } = useGetCryptoByNameQuery();
+interface Props {
+  simplified: boolean;
+}
+const CryptoCurrencies: React.FC<Props> = ({ simplified }) => {
+  const count = simplified ? 10 : 100;
+  const { data, isFetching } = useGetCryptoByNameQuery([count]);
   const cryptos = data?.data.coins;
   const [searchCrypto, setSearchCrypto] = useState(cryptos);
   const [searchTerms, setSearchTerms] = useState("");
+
   useEffect(() => {
     const filteredData = cryptos?.filter((coin: any) =>
       coin.name.toLowerCase().includes(searchTerms.toLowerCase())
@@ -22,12 +26,14 @@ const CryptoCurrencies = () => {
         "Loading"
       ) : (
         <div>
-          <div className="search-crypto">
-            <Input
-              placeholder="Search Cryptocurrency"
-              onChange={(e) => setSearchTerms(e.target.value)}
-            />
-          </div>
+          {!simplified && (
+            <div className="search-crypto">
+              <Input
+                placeholder="Search Cryptocurrency"
+                onChange={(e) => setSearchTerms(e.target.value)}
+              />
+            </div>
+          )}
           <Row gutter={[32, 32]} className="crypto-card-container">
             {searchCrypto?.map((crypto) => (
               <Col

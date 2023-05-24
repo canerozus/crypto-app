@@ -4,12 +4,12 @@ import { Typography, Row, Col, Statistic, Card } from "antd";
 import { useGetCryptoByNameQuery } from "../store/cryptoApi";
 import { Link } from "react-router-dom";
 import News from "./News";
+import CryptoCurrencies from "./CryptoCurrencies";
 
 const HomePage = () => {
-  const { data, isFetching } = useGetCryptoByNameQuery();
+  const count = 10;
+  const { data, isFetching } = useGetCryptoByNameQuery([count]);
   const res = data?.data;
-  const Cryptos = data?.data.coins;
-  const topTen = Cryptos?.slice(0, 10);
 
   return (
     <>
@@ -60,31 +60,7 @@ const HomePage = () => {
           <Link to="/cryptocurrencies">Show More</Link>
         </Typography.Title>
       </div>
-      {
-        <Row gutter={[32, 32]} className="crypto-card-container">
-          {topTen?.map((crypto) => (
-            <Col
-              xs={24}
-              sm={12}
-              lg={6}
-              className="crypto-card"
-              key={crypto.uuid}
-            >
-              <Link to={`/crypto/${crypto.uuid}`}>
-                <Card
-                  title={`${crypto.rank}. ${crypto.name}`}
-                  extra={<img className="crypto-image" src={crypto.iconUrl} />}
-                  hoverable={true}
-                >
-                  <p>Price: {millify(crypto.price)}</p>
-                  <p>Market Cap: {millify(crypto.marketCap)}</p>
-                  <p>Daily Change: {millify(crypto.change)}</p>
-                </Card>
-              </Link>
-            </Col>
-          ))}
-        </Row>
-      }
+      <CryptoCurrencies simplified />
       <div className="home-heading-container">
         <Typography.Title level={2} className="home-title">
           Latest Crypto News
