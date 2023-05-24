@@ -20,7 +20,7 @@ const News: React.FC<Props> = ({ simplified }) => {
                 <Typography.Title className="news-title" level={4}>
                   {news.name}
                 </Typography.Title>
-                <img src={news?.image.thumbnail.contentUrl} alt="news" />
+                <img style={{maxHeight: "100px", maxWidth:"100px"}} src={news?.image.thumbnail.contentUrl} alt="news" />
               </div>
               <p>
                 {news.description.length > 200
