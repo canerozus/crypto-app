@@ -10,7 +10,7 @@ interface Stats {
   total24hVolume: number;
 }
 interface Coin {
-  change:number;
+  change: number;
   marketCap: number;
   iconUrl: string;
   rank: number;
@@ -19,23 +19,30 @@ interface Coin {
   price: number;
 }
 
-export interface GetNews { 
+export interface GetNews {
   _type: string;
   webSearchUrl: string;
-  value: value[]
+  value: Value[];
 }
-interface value {
+interface Value {
   _type: string;
   name: string;
   url: string;
   description: string;
   datePublished: string;
-  image: image[]
+  image: Image;
+  provider: Provider[];
 }
-interface image {
+interface Provider {
+  name: string;
+  image: Image;
+}
+
+interface Image {
   _type: string;
-  thumbnail: thumbnail[]
+  thumbnail: Thumbnail;
 }
-interface thumbnail {
+
+interface Thumbnail {
   contentUrl: string;
 }

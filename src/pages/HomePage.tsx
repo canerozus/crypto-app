@@ -61,6 +61,7 @@ const HomePage = () => {
         </Typography.Title>
       </div>
       <CryptoCurrencies simplified />
+
       <div className="home-heading-container">
         <Typography.Title level={2} className="home-title">
           Latest Crypto News
