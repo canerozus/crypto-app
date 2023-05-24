@@ -14,7 +14,7 @@ const CryptoCurrencies = () => {
       coin.name.toLowerCase().includes(searchTerms.toLowerCase())
     );
     setSearchCrypto(filteredData);
-  }, [searchTerms]);
+  }, [cryptos, searchTerms]);
 
   return (
     <>

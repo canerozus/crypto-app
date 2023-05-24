@@ -11,10 +11,13 @@ import {
 
 const Navbar = () => {
   const location = useLocation();
+  const [activeMenu, setActiveMenu] = useState(true);
+  const [screenSize, setScreenSize] = useState(undefined);
+
 
   return (
     <div className="nav-container">
-      <div>
+      <div className="logo-container">
         <Typography.Title level={2} className="logo">
           <Link to="/">CryptoApp</Link>
         </Typography.Title>
