@@ -10,8 +10,8 @@ import {
 } from "@ant-design/icons";
 
 const Navbar = () => {
-  const [activeTab, setActiveTab] = useState("");
   const location = useLocation();
+
   return (
     <div className="nav-container">
       <div>
@@ -19,17 +19,17 @@ const Navbar = () => {
           <Link to="/">CryptoApp</Link>
         </Typography.Title>
       </div>
-      <Menu  theme="dark">
-        <Menu.Item icon={<HomeOutlined />}>
+      <Menu selectedKeys={[location.pathname]} theme="dark">
+        <Menu.Item key="/" icon={<HomeOutlined />}>
           <Link to="/">Home</Link>
         </Menu.Item>
-        <Menu.Item icon={<FundOutlined />}>
+        <Menu.Item key="/cryptocurrencies" icon={<FundOutlined />}>
           <Link to="/cryptocurrencies">Cryptocurrencies</Link>
         </Menu.Item>
-        <Menu.Item icon={<MoneyCollectOutlined />}>
+        <Menu.Item key="/exchanges" icon={<MoneyCollectOutlined />}>
           <Link to="/exchanges">Exchanges</Link>
         </Menu.Item>
-        <Menu.Item icon={<BulbOutlined />}>
+        <Menu.Item key="/news" icon={<BulbOutlined />}>
           <Link to="/news">News</Link>
         </Menu.Item>
       </Menu>
