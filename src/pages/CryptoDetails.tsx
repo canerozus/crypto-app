@@ -3,7 +3,10 @@ import HTMLReactParser from "html-react-parser";
 import { useParams } from "react-router-dom";
 import millify from "millify";
 import { Col, Row, Select, Typography } from "antd";
-import { useGetCryptoByIdQuery } from "../store/cryptoApi";
+import {
+  useGetCryptoByIdQuery,
+  useGetCryptoHistoryQuery,
+} from "../store/cryptoApi";
 import {
   CheckOutlined,
   DollarCircleOutlined,
@@ -16,11 +19,14 @@ import {
   TrophyOutlined,
 } from "@ant-design/icons";
 import { isButtonElement } from "react-router-dom/dist/dom";
+import Linechart from "../components/LineChart";
+
 const CryptoDetails = () => {
+  const [timePeriod, setTimePeriod] = useState("7d");
   const { id } = useParams();
   const { data, isFetching } = useGetCryptoByIdQuery([id!]);
-  console.log("🚀 ~ file: CryptoDetails.tsx:21 ~ CryptoDetails ~ data:", data);
-  const [timePeriod, setTimePeriod] = useState("7d");
+  const { data: coinHistory } = useGetCryptoHistoryQuery([id!]);
+  console.log("🚀 ~ file: CryptoDetails.tsx:29 ~ CryptoDetails ~ coinHistory:", coinHistory)
   const cryptoDetails = data?.data?.coin;
   console.log(cryptoDetails?._24hVolume);
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
@@ -116,6 +122,11 @@ const CryptoDetails = () => {
           <Select.Option key={option}>{option}</Select.Option>
         ))}
       </Select>
+      <Linechart
+        coinHistory={coinHistory}
+        currentPrice={millify(cryptoDetails?.price)}
+        coinName={cryptoDetails?.name}
+      />
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
@@ -169,9 +180,9 @@ const CryptoDetails = () => {
         </Row>
         <Col className="coin-links">
           <Typography.Title level={3} className="coin-details-heading">
-            {cryptoDetails.name} Links
+            {cryptoDetails?.name} Links
           </Typography.Title>
-          {cryptoDetails.links.map((link: any) => (
+          {cryptoDetails?.links.map((link: any) => (
             <Row className="coin-link" key={link.name}>
               <Typography.Title level={5} className="link-name">
                 {link.type}
