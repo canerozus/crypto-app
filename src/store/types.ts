@@ -1,6 +1,42 @@
 export interface GetCryptocurrencies {
   data: { coins: Coin[]; stats: Stats };
 }
+export interface GetCryptoId{
+  data: { coin: CoinId[]}
+}
+interface CoinId {
+  uuid: string;
+  symbol: string;
+  name: string;
+  description: string;
+  color: string;
+  iconUrl: string;
+  websiteUrl: string;
+  links: Link[]
+  supply: Supply
+  numberOfMarkets: number;
+  numberOfExchanges: number;
+  marketCap: string;
+  price: string;
+  btcPrice: string;
+  priceAt: number;
+  change: string;
+  rank: number;
+}
+interface Supply {
+  confirmed: boolean;
+  supplyAt: number;
+  max: string;
+  total: string;
+  circulating: string;
+
+}
+interface Link {
+  name: string;
+  type: string;
+  url: string;
+
+}
 interface Stats {
   total: number;
   totalCoins: number;

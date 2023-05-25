@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GetCryptocurrencies } from "./types";
+import { GetCryptocurrencies, GetCryptoId } from "./types";
 
 const CryptoHeaders = {
   "X-RapidAPI-Host": import.meta.env.VITE_RAPID_BASE_HOST,
@@ -14,8 +14,8 @@ export const CryptoApi = createApi({
     getCryptoByName: builder.query<GetCryptocurrencies, [count:number]>({
       query: (count) => createRequest(`/coins?limit=${count}`),
     }),
-    getCryptoById: builder.query<GetCryptocurrencies, void>({
-      query: (coinId) => createRequest(`/coins/${coinId}`),
+    getCryptoById: builder.query<GetCryptoId, [coinId: string]>({
+      query: (coinId) => createRequest(`/coin/${coinId}`),
     }),
   }),
 });
