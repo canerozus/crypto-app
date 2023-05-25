@@ -22,7 +22,7 @@ const CryptoDetails = () => {
   console.log("🚀 ~ file: CryptoDetails.tsx:21 ~ CryptoDetails ~ data:", data);
   const [timePeriod, setTimePeriod] = useState("7d");
   const cryptoDetails = data?.data?.coin;
-console.log(cryptoDetails?._24hVolume)
+  console.log(cryptoDetails?._24hVolume);
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
   const stats = [
@@ -35,9 +35,9 @@ console.log(cryptoDetails?._24hVolume)
     {
       title: "24h Volume",
       value: `$ ${
-        
-        cryptoDetails && cryptoDetails["24hVolume"] && millify(cryptoDetails["24hVolume"])
-       
+        cryptoDetails &&
+        cryptoDetails["24hVolume"] &&
+        millify(cryptoDetails["24hVolume"])
       }`,
       icon: <ThunderboltOutlined />,
     },
@@ -132,6 +132,54 @@ console.log(cryptoDetails?._24hVolume)
               </Col>
               <Typography.Text className="stats">{obj.value}</Typography.Text>
             </Col>
+          ))}
+        </Col>
+        <Col className="coin-value-statistics">
+          <Col className="coin-value-statistics-heading">
+            <Typography.Title
+              level={3}
+              className="coin-details-heading"
+              style={{ textAlign: "center" }}
+            >
+              Other Statistics
+            </Typography.Title>
+            <p>An overview showing the stats of all cryptocurrencies</p>
+          </Col>
+          {genericStats.map((obj) => (
+            <Col className="coin-stats">
+              <Col className="coin-stats-name">
+                <Typography.Text>{obj.icon}</Typography.Text>
+                <Typography.Text>{obj.title}</Typography.Text>
+              </Col>
+              <Typography.Text className="stats">{obj.value}</Typography.Text>
+            </Col>
+          ))}
+        </Col>
+      </Col>
+      <Col className="coin-desc-link">
+        <Row className="coin-desc">
+          <Typography.Title level={3} className="coin-details-heading">
+            What is {cryptoDetails?.name} <br />
+            <br />
+          </Typography.Title>
+          <Typography.Title level={4}>
+            {cryptoDetails?.description &&
+              HTMLReactParser(cryptoDetails.description)}
+          </Typography.Title>
+        </Row>
+        <Col className="coin-links">
+          <Typography.Title level={3} className="coin-details-heading">
+            {cryptoDetails.name} Links
+          </Typography.Title>
+          {cryptoDetails.links.map((link: any) => (
+            <Row className="coin-link" key={link.name}>
+              <Typography.Title level={5} className="link-name">
+                {link.type}
+              </Typography.Title>
+              <a href={link.url} target="_blank" rel="noreferrer">
+                {link.name}
+              </a>
+            </Row>
           ))}
         </Col>
       </Col>
