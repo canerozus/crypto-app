@@ -71,7 +71,7 @@ const News: React.FC<Props> = ({ simplified }) => {
                       <Avatar
                         src={
                           news?.provider[0]?.image?.thumbnail?.contentUrl ||
-                          "clientsrcassetsimages.png"
+                          defaultImage
                         }
                         alt="news"
                       />
