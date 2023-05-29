@@ -18,7 +18,6 @@ import {
   ThunderboltOutlined,
   TrophyOutlined,
 } from "@ant-design/icons";
-import { isButtonElement } from "react-router-dom/dist/dom";
 import Linechart from "../components/LineChart";
 
 const CryptoDetails = () => {
@@ -28,8 +27,6 @@ const CryptoDetails = () => {
   const { data: coinHistory } = useGetCryptoHistoryQuery([id!]);
   console.log("🚀 ~ file: CryptoDetails.tsx:29 ~ CryptoDetails ~ coinHistory:", coinHistory)
   const cryptoDetails = data?.data?.coin;
-  console.log(cryptoDetails?._24hVolume);
-  const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
   const stats = [
     {
@@ -112,16 +109,7 @@ const CryptoDetails = () => {
           cap and supply.
         </p>
       </Col>
-      <Select
-        defaultValue="7d"
-        className="select-timeperiod"
-        placeholder="Select Time Period"
-        onChange={(value: any) => setTimePeriod(value)}
-      >
-        {time.map((option) => (
-          <Select.Option key={option}>{option}</Select.Option>
-        ))}
-      </Select>
+      
       <Linechart
         coinHistory={coinHistory}
         currentPrice={millify(cryptoDetails?.price)}
