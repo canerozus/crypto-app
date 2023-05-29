@@ -1,7 +1,6 @@
 import { Layout, Space, Typography } from "antd";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
-import Exchanges from "./pages/Exchanges";
 import CryptoCurrencies from "./pages/CryptoCurrencies";
 import CryptoDetails from "./pages/CryptoDetails";
 import News from "./pages/News";
@@ -18,10 +17,9 @@ function App() {
           <div className="routes">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/exchanges" element={<Exchanges />} />
-              <Route path="/cryptocurrencies" element={<CryptoCurrencies />} />
+              <Route path="/cryptocurrencies" element={<CryptoCurrencies simplified={false}/>} />
               <Route path="/crypto/:id" element={<CryptoDetails />} />
-              <Route path="/news" element={<News />} />
+              <Route path="/news" element={<News simplified={false}/>} />
             </Routes>
           </div>
         </Layout>
@@ -31,12 +29,11 @@ function App() {
             style={{ color: "white", textAlign: "center" }}
           >
             Copyright © 2023
-            <Link to="/">Cryptoverse Inc.</Link> <br />
+            <Link to="/">CryptoApp Inc.</Link> <br />
             All Rights Reserved.
           </Typography.Title>
           <Space>
             <Link to="/">Home</Link>
-            <Link to="/exchanges">Exchanges</Link>
             <Link to="/news">News</Link>
           </Space>
         </div>
